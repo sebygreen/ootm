@@ -373,7 +373,7 @@ form div.upload .dropzone .showcase.active article p {
     z-index: 1;
 }
 #menu.open {
-    bottom: 0;
+    height: 100dvh;
     display: grid;
     grid-template-rows: min-content 1fr;
     grid-template-columns: 1fr;

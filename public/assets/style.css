@@ -373,11 +373,9 @@ form div.upload .dropzone .showcase.active article p {
     z-index: 1;
 }
 #menu.open {
-    height: 100dvh;
     bottom: 0;
-    display: grid;
-    grid-template-rows: min-content 1fr;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
 }
 #menu header {
     background-color: rgb(var(--palette-bg));
@@ -432,7 +430,7 @@ form div.upload .dropzone .showcase.active article p {
     background-color: rgb(var(--palette-primary));
 }
 #menu nav.mobile {
-    height: 100%;
+    flex-grow: 1;
     flex-direction: column;
     gap: var(--spacing-l);
     justify-content: center;

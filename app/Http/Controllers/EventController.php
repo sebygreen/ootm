@@ -36,6 +36,7 @@ class EventController extends Controller
 
         return redirect("/dashboard");
     }
+
     public function update(Request $request)
     {
         $request->validate([

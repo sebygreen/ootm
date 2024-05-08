@@ -37,8 +37,9 @@ class UserController extends Controller
     {
         $current = Auth::id();
         $id = $request->query("id");
+        $user = User::find($id);
 
-        if (!Auth::user()->admin || $id === $current) {
+        if (!Auth::user()->admin || $id === $current || $user->admin) {
             redirect("/dashboard");
         }
 

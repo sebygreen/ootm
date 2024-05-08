@@ -1,17 +1,17 @@
 <?php
 
-namespace App\View\Components\Layout;
+namespace App\View\Components\Dashboard;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Root extends Component
+class User extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $title)
+    public function __construct(public object $user)
     {
         //
     }
@@ -21,6 +21,6 @@ class Root extends Component
      */
     public function render(): View|Closure|string
     {
-        return view("components.layout.root");
+        return view("components.dashboard.user");
     }
 }

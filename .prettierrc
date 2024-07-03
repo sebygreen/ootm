@@ -8,10 +8,7 @@
     "bracketSpacing": true,
     "arrowParens": "always",
     "proseWrap": "never",
-    "plugins": [
-        "@prettier/plugin-php",
-        "@shufo/prettier-plugin-blade"
-    ],
+    "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade"],
     "overrides": [
         {
             "files": ["*.blade.php"],

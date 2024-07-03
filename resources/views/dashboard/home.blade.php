@@ -17,7 +17,7 @@
                 @if(count($events) > 0)
                     <div class="grid">
                         @foreach($events as $event)
-                            <x-dashboard.event :event="$event"/>
+                            <x-dashboard.event :event="$event" />
                         @endforeach
                     </div>
                 @else
@@ -88,7 +88,7 @@
                 @if(count($users) > 0)
                     <div class="grid">
                         @foreach($users as $user)
-                            <x-dashboard.user :user="$user"/>
+                            <x-dashboard.user :user="$user" />
                         @endforeach
                     </div>
                 @else

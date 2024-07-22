@@ -15,9 +15,7 @@ Route::get("/calendar", [MainController::class, "calendar"]);
 Route::get("/synopses", [MainController::class, "synopses"]);
 Route::get("/about", [MainController::class, "about"]);
 
-Route::get("/login", [OfficeController::class, "login"])
-    ->name("login")
-    ->middleware("guest");
+Route::get("/login", [OfficeController::class, "login"])->name("login");
 Route::get("/password/forgot", [OfficeController::class, "forgotPassword"])
     ->middleware("guest")
     ->name("password.request");
@@ -51,7 +49,7 @@ Route::get("/office/testimonials/new", [OfficeController::class, "newTestimonial
 Route::get("/office/testimonials/edit", [OfficeController::class, "editTestimonial"])->middleware("auth");
 Route::get("/office/testimonials/delete", [TestimonialController::class, "delete"])->middleware("auth");
 
-Route::post("/login", [AuthController::class, "login"])->middleware("guest");
+Route::post("/login", [AuthController::class, "login"]);
 Route::post("/password/forgot", [AuthController::class, "forgotPassword"])
     ->middleware("guest")
     ->name("password.email");

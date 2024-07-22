@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Photo;
 use App\Models\Synopsis;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
@@ -17,8 +18,10 @@ class MainController extends Controller
                 "url" => Storage::url($photo->path),
             ];
         }
+        $testimonials = Testimonial::all()->sortBy("author");
         return view("main.home", [
             "photos" => $photos,
+            "testimonials" => $testimonials,
         ]);
     }
 

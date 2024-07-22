@@ -30,7 +30,7 @@ class UserController extends Controller
             "admin" => isset($request->admin[0]) ? 1 : 0,
         ]);
 
-        return redirect("/dashboard");
+        return redirect("/office/users");
     }
 
     public function delete(Request $request)
@@ -40,11 +40,11 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!Auth::user()->admin || $id === $current || $user->admin) {
-            redirect("/dashboard");
+            redirect("/office");
         }
 
         User::destroy($id);
-        return redirect("/dashboard");
+        return redirect("/office/users");
     }
 
     public function password(Request $request)
@@ -53,7 +53,7 @@ class UserController extends Controller
         $id = $request->query("id");
 
         if ($id !== $current) {
-            redirect("/dashboard");
+            redirect("/office");
         }
 
         $request->validate([
@@ -66,6 +66,6 @@ class UserController extends Controller
         $user->save();
         $user->makeHidden("password");
 
-        redirect("/dashboard");
+        redirect("/office/users");
     }
 }

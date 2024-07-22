@@ -25,7 +25,7 @@ class EventController extends Controller
             "description" => $request->description,
         ]);
 
-        return redirect("/dashboard");
+        return redirect("/office/events");
     }
 
     public function delete(Request $request)
@@ -34,7 +34,7 @@ class EventController extends Controller
 
         Event::destroy($id);
 
-        return redirect("/dashboard");
+        return redirect("/office/events");
     }
 
     public function update(Request $request)
@@ -57,6 +57,6 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->save();
 
-        return redirect("/dashboard");
+        return redirect("/office/events");
     }
 }

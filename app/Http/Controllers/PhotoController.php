@@ -21,7 +21,7 @@ class PhotoController extends Controller
             Photo::create(["path" => $path]);
         }
 
-        return redirect("/dashboard");
+        return redirect("/office/photos");
     }
 
     public function delete(Request $request)
@@ -32,6 +32,6 @@ class PhotoController extends Controller
         Storage::disk("public")->delete($photo->path);
         Photo::destroy($id);
 
-        return redirect("/dashboard");
+        return redirect("/office/photos");
     }
 }

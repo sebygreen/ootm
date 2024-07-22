@@ -1,21 +1,13 @@
-<x-layout.root title="About">
+<x-layout.root title="Forgot Password">
     <body class="form">
-    <main id="login">
+    <main id="forgot-password">
         <div class="wrapper">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
+            <h2>Forgot Password</h2>
+            <form action="/password/forgot" method="POST">
                 @csrf
                 <div class="group required">
                     <label for="email">Email</label>
                     <input required type="email" id="email" name="email" />
-                    <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"></path>
-                    </svg>
-                </div>
-                <div class="group required">
-                    <label for="password">Password</label>
-                    <input required type="password" id="password" name="password" />
                     <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
                         <path
                             d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"></path>
@@ -33,7 +25,6 @@
                         ></path>
                     </svg>
                 </button>
-                <a href="/password/forgot">Forgot your password?</a>
             </form>
             @if($errors->any())
                 <div class="errors">

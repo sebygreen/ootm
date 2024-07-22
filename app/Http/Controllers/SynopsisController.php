@@ -19,7 +19,7 @@ class SynopsisController extends Controller
             "link" => $request->link,
         ]);
 
-        return redirect("/dashboard");
+        return redirect("/office/synopses");
     }
 
     public function delete(Request $request)
@@ -28,7 +28,7 @@ class SynopsisController extends Controller
 
         Synopsis::destroy($id);
 
-        return redirect("/dashboard");
+        return redirect("/office/synopses");
     }
 
     public function update(Request $request)
@@ -45,6 +45,6 @@ class SynopsisController extends Controller
         $synopsis->link = $request->link;
         $synopsis->save();
 
-        return redirect("/dashboard");
+        return redirect("/office/synopses");
     }
 }

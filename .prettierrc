@@ -7,37 +7,5 @@
     "trailingComma": "all",
     "bracketSpacing": true,
     "arrowParens": "always",
-    "proseWrap": "never",
-    "plugins": ["@prettier/plugin-php", "@shufo/prettier-plugin-blade"],
-    "overrides": [
-        {
-            "files": ["*.blade.php"],
-            "options": {
-                "parser": "blade",
-                "printWidth": 120,
-                "tabWidth": 4,
-                "wrapAttributes": "force-expand-multiline",
-                "wrapAttributesMinAttrs": 2,
-                "sortTailwindcssClasses": false,
-                "sortHtmlAttributes": "alphabetical",
-                "noPhpSyntaxCheck": false,
-                "indentInnerHtml": true,
-                "extraLiners": "",
-                "trailingCommaPHP": true
-            }
-        },
-        {
-            "files": ["*.php"],
-            "options": {
-                "parser": "php",
-                "phpVersion": "8.3",
-                "printWidth": 120,
-                "tabWidth": 4,
-                "useTabs": false,
-                "singleQuote": false,
-                "trailingCommaPHP": true,
-                "braceStyle": "per-cs"
-            }
-        }
-    ]
+    "proseWrap": "never"
 }

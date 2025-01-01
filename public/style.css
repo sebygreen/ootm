@@ -167,6 +167,10 @@ button.button {
     padding: 8px;
 }
 
+.button.blur {
+    backdrop-filter: blur(5px);
+}
+
 /*spinner*/
 #spinner {
     position: fixed;
@@ -560,6 +564,9 @@ form div.submit {
     display: block;
     height: 36px;
     width: auto;
+}
+
+#menu header a.logo {
     margin-right: auto;
 }
 
@@ -592,15 +599,30 @@ form div.submit {
     width: fit-content;
 }
 
-#menu nav a.active:after {
-    position: absolute;
+#menu nav a:after {
     content: "";
-    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
     height: 2px;
     border-radius: 1px;
-    bottom: -5px;
-    left: 0;
+    transform-origin: center;
+    transition: scale 100ms ease-in-out;
+    scale: 0 1;
     background-color: rgb(var(--palette-primary));
+    opacity: 0.2;
+}
+
+@media (hover: hover) {
+    #menu nav a:hover:after {
+        scale: 1 1;
+    }
+}
+
+#menu nav a.active:after {
+    scale: 1 1;
+    opacity: 1;
 }
 
 #menu nav.mobile {
@@ -629,6 +651,7 @@ form div.submit {
 #menu .actions {
     display: flex;
     gap: var(--spacing-s);
+    align-items: center;
 }
 
 @media (min-width: 781px) {
@@ -746,26 +769,21 @@ footer .contact .method p {
 }
 
 #home section#hero .gallery .controls {
-    margin-top: var(--spacing-s);
     display: flex;
-    gap: var(--spacing-s);
+    gap: var(--spacing-t);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-s);
 }
 
-#home section#hero .gallery .controls button {
-    display: block;
-    border: unset;
-    outline: unset;
-    height: 32px;
-    width: 32px;
-    border-radius: 50px;
-    background-color: rgba(var(--palette-primary), 0.1);
-    color: rgb(var(--palette-primary));
-    cursor: pointer;
+#home section#hero .gallery .controls .toggle svg {
+    opacity: 0;
+    display: none;
 }
 
-#home section#hero .gallery .controls button i {
+#home section#hero .gallery .controls .toggle svg.shown {
+    opacity: 1;
     display: block;
-    font-size: 22px;
 }
 
 #home section#hero .gallery .slides {
@@ -777,7 +795,7 @@ footer .contact .method p {
 
 #home section#hero .gallery .slides .overflow {
     display: flex;
-    gap: var(--spacing-s);
+    gap: 15px;
 }
 
 #home section#hero .gallery .slides .overflow img {

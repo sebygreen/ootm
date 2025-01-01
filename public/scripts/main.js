@@ -170,32 +170,86 @@ function top() {
 }
 
 function gallery() {
+    let duration = 5000;
+    let interval = null;
+    let moving = false;
     const container = document.querySelector(".gallery");
     if (!container) {
         return;
     }
-
     const overflow = container.querySelector(".overflow");
+    const controls = {
+        next: container.querySelector(".button.next"),
+        back: container.querySelector(".button.back"),
+        toggle: container.querySelector(".button.toggle"),
+    };
+
+    controls.next.addEventListener("click", () => {
+        if (moving) return;
+        if (interval) toggle();
+        next();
+    });
+    controls.back.addEventListener("click", () => {
+        if (moving) return;
+        if (interval) toggle();
+        back();
+    });
+    controls.toggle.addEventListener("click", toggle);
 
     function next() {
+        moving = true;
         const current = overflow.querySelector(".active");
         const target = current.nextElementSibling;
-        const offset = target.getBoundingClientRect().left - overflow.getBoundingClientRect().left;
+        const offset = current.clientWidth + 15;
         anime({
             targets: overflow,
             translateX: -offset,
-            duration: 1000,
+            duration: 500,
             easing: "easeInOutQuint",
             complete: () => {
                 current.classList.remove("active");
                 overflow.appendChild(current);
                 overflow.style.transform = "translateX(0)";
                 target.classList.add("active");
+                moving = false;
             },
         });
     }
 
-    setInterval(next, 7000);
+    function back() {
+        moving = true;
+        const current = overflow.querySelector(".active");
+        const target = overflow.lastElementChild;
+        const offset = target.clientWidth + 15;
+        overflow.insertBefore(target, overflow.firstChild);
+        overflow.style.transform = `translateX(${-offset}px)`;
+        anime({
+            targets: overflow,
+            translateX: 0,
+            duration: 500,
+            easing: "easeInOutQuint",
+            complete: () => {
+                current.classList.remove("active");
+                target.classList.add("active");
+                moving = false;
+            },
+        });
+    }
+
+    function toggle() {
+        if (!interval) {
+            interval = setInterval(next, duration);
+            controls.toggle.querySelector("svg.play").classList.remove("shown");
+            controls.toggle.querySelector("svg.pause").classList.add("shown");
+        } else {
+            clearInterval(interval);
+            interval = null;
+            controls.toggle.querySelector("svg.pause").classList.remove("shown");
+            controls.toggle.querySelector("svg.play").classList.add("shown");
+        }
+    }
+
+    interval = setInterval(next, duration);
 }
 
 function loader() {

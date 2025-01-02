@@ -13,7 +13,7 @@
                 </svg>
             </button>
             <p>
-                Copyright &copy; 2024<br />Odyssey of the Mind – Switzerland
+                Copyright &copy; 2025<br />Odyssey of the Mind – Switzerland
             </p>
         </div>
         <div class="contact">

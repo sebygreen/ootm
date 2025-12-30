@@ -13,7 +13,7 @@
                 </svg>
             </button>
             <p>
-                Copyright &copy; 2025<br />Odyssey of the Mind – Switzerland
+                &copy; 2026<br />Odyssey of the Mind Switzerland
             </p>
         </div>
         <div class="contact">

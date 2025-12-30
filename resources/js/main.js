@@ -170,7 +170,7 @@ function top() {
 }
 
 function gallery() {
-    let duration = 5000;
+    let duration = 4000;
     let interval = null;
     let moving = false;
     const container = document.querySelector(".gallery");

@@ -56,7 +56,7 @@
             </section>
             <section id="organisation">
                 <img
-                    src="/assets/ootm.png"
+                    src="{{ Vite::asset("resources/images/ootm.png") }}"
                     alt="Logo for Odyssey of the Mind International."
                 />
                 <p>

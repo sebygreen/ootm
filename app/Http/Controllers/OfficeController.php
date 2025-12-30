@@ -8,6 +8,7 @@ use App\Models\Synopsis;
 use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class OfficeController extends Controller

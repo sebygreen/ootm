@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Photo;
 use App\Models\Synopsis;
 use App\Models\Testimonial;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class MainController extends Controller
@@ -19,6 +20,7 @@ class MainController extends Controller
             ];
         }
         $testimonials = Testimonial::all()->sortBy("author");
+        shuffle($photos);
         return view("main.home", [
             "photos" => $photos,
             "testimonials" => $testimonials,

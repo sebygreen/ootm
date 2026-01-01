@@ -43,33 +43,35 @@
                                         d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"></path>
                                 </svg>
                             </div>
-                            <div class="group required">
-                                <label for="type">Type</label>
+                            <div class="inline">
+                                <div class="group required">
+                                    <label for="type">Type</label>
 
-                                <div class="select">
-                                    <select name="type" id="type">
-                                        <option value="document">Document</option>
-                                        <option value="video">Video</option>
-                                    </select>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
+                                    <div class="select">
+                                        <select name="type" id="type">
+                                            <option value="document">Document</option>
+                                            <option value="video">Video</option>
+                                        </select>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
+                                            <path
+                                                d="M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z"></path>
+                                        </svg>
+                                    </div>
+
+                                    <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 256 256">
                                         <path
-                                            d="M181.66,170.34a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-48-48a8,8,0,0,1,11.32-11.32L128,212.69l42.34-42.35A8,8,0,0,1,181.66,170.34Zm-96-84.68L128,43.31l42.34,42.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,85.66Z"></path>
+                                            d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"></path>
                                     </svg>
                                 </div>
-
-                                <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                     viewBox="0 0 256 256">
-                                    <path
-                                        d="M211,103.43l-70.13,28,49.47,63.61a8,8,0,1,1-12.63,9.82L128,141,78.32,204.91a8,8,0,0,1-12.63-9.82l49.47-63.61L45,103.43A8,8,0,0,1,51,88.57l69,27.61V40a8,8,0,0,1,16,0v76.18l69-27.61A8,8,0,1,1,211,103.43Z"></path>
-                                </svg>
+                                <button class="button full new" type="submit">
+                                    Add
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
+                                        <path
+                                            d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
+                                    </svg>
+                                </button>
                             </div>
-                            <button class="button full new" type="submit">
-                                Add
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
-                                    <path
-                                        d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path>
-                                </svg>
-                            </button>
                         </div>
                         <div class="list"></div>
                     </div>
@@ -83,7 +85,7 @@
                 <div class="checkbox">
                     <label for="shown">Shown</label>
                     <label class="switch" for="shown">
-                        <input type="checkbox" id="shown" name="shown" value="0" />
+                        <input type="checkbox" id="shown" name="shown" value="1" />
                         <span class="slider"></span>
                     </label>
                 </div>

@@ -10,23 +10,33 @@ class SynopsisController extends Controller
 {
     public function create(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             "year" => ["integer", "required"],
-            "urls" => ["json", "required"],
-            "shown" => ["string"],
+            "urls" => ["string", "json", "required"],
+            "shown" => "boolean",
             "link" => "exclude",
             "type" => "exclude",
         ]);
 
-        print_r($request->all());
+        echo "<pre>";
+        print_r($validated);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($validated["urls"]);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r(json_decode($validated["urls"], true));
+        echo "</pre>";
 
         Synopsis::create([
             "year" => $request->year,
             "links" => $request->urls,
-            "shown" => $request->shown,
+            "shown" => empty($request->shown) ? 0 : 1,
         ]);
 
-        return redirect("/office/synopses");
+        //return redirect("/office/synopses");
     }
 
     public function delete(Request $request)

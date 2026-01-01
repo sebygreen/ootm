@@ -129,6 +129,7 @@ function menu() {
             0,
         );
     }
+
     function toggle() {
         container.classList.contains("open") ? close() : open();
     }
@@ -253,13 +254,13 @@ function gallery() {
 function loader() {
     const loader = document.querySelector("#spinner");
     loader &&
-        animate(loader, {
-            opacity: 0,
-            scale: 0,
-            duration: 200,
-            easing: "linear",
-            complete: () => (loader.style.display = "none"),
-        });
+    animate(loader, {
+        opacity: 0,
+        scale: 0,
+        duration: 200,
+        easing: "linear",
+        complete: () => (loader.style.display = "none"),
+    });
 }
 
 function dropzone() {
@@ -311,7 +312,7 @@ function dropzone() {
                 size.innerText = formatBytes(item.size, 0);
 
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     image.setAttribute("src", e.target.result);
                 };
                 reader.readAsDataURL(item);
@@ -346,7 +347,7 @@ function dropzone() {
             // send to background
             const reader = new FileReader();
             // change background once file is loaded
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 // remove placeholder svg
                 if (placeholder) {
                     placeholder.remove();
@@ -400,12 +401,6 @@ function links() {
         list: root.querySelector(".list"),
         input: root.querySelector("input#urls"),
     };
-    let links = [];
-
-    if (!links.length && JSON.parse(elements.input.value).length) {
-        const extracted = JSON.parse(elements.input.value);
-        links = extracted.map((i) => new Link(i.link, i.type));
-    }
 
     function Link(link, type) {
         this.id = uuidv4();
@@ -468,6 +463,13 @@ function links() {
             elements.input.value = JSON.stringify(links);
         },
     };
+
+    let links = [];
+    const extracted = JSON.parse(elements.input.value);
+    if (!links.length && extracted.length) {
+        links = extracted.map((i) => new Link(i.link, i.type));
+        links.forEach((i) => elements.list.appendChild(create.link(i)));
+    }
 
     elements.new.addEventListener("click", handle.new);
     elements.link.addEventListener("keypress", (event) => {

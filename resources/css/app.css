@@ -1385,6 +1385,19 @@ body.office header .heading p span {
     padding: var(--spacing-s);
 }
 
+#new-synopsis #links .form .inline {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-s);
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+#new-synopsis #links .form .inline > .group {
+    flex: 1;
+    min-width: 100px;
+}
+
 #new-synopsis #links .list {
     padding: 0 var(--spacing-s);
 }

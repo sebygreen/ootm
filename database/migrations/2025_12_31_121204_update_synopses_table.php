@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->renameColumn('link', 'links');
             $table->json("links")->change();
             $table->integer("year")->change();
-            $table->boolean("shown")->default(false);
+            $table->boolean("shown")->default(0);
         });
     }
 

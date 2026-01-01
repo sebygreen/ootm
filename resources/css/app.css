@@ -299,6 +299,51 @@ form div.group textarea:focus {
     box-shadow: inset 0 0 0 1px rgb(var(--palette-primary));
 }
 
+/*custom select*/
+form div.group .select {
+    width: 100%;
+    border-radius: 10px;
+    position: relative;
+    color: rgb(var(--palette-fg));
+    background-color: rgb(var(--palette-bg));
+    transition:
+        background-color 200ms,
+        color 200ms,
+        box-shadow 200ms;
+}
+
+form div.group .select select {
+    display: block;
+    border: unset;
+    border-radius: 10px;
+    background-color: unset;
+    color: unset;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 20px;
+    padding: 8px 23px 8px 10px;
+    appearance: none;
+    width: 100%;
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    form div.group .select:hover {
+        box-shadow: inset 0 0 0 1px rgb(var(--palette-primary));
+    }
+}
+
+form div.group .select svg {
+    display: block;
+    height: 18px;
+    width: 18px;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    pointer-events: none;
+}
+
 form div.group textarea {
     resize: none;
 }
@@ -1326,6 +1371,37 @@ body.office header .heading p span {
 
 #office section#synopses .grid article.synopsis p {
     overflow-wrap: anywhere;
+}
+
+#new-synopsis #links {
+    box-shadow: inset 0 0 0 2px rgba(var(--palette-primary), 0.1);
+    border-radius: 10px;
+}
+
+#new-synopsis #links .form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s);
+    padding: var(--spacing-s);
+}
+
+#new-synopsis #links .list {
+    padding: 0 var(--spacing-s);
+}
+
+#new-synopsis #links .list article.link {
+    padding: calc(var(--spacing-s) - 2px) 0 var(--spacing-s) 0;
+    border-top: 1px solid rgba(var(--palette-fg), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-s);
+}
+
+#new-synopsis #links .list article.link p.link {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*office photos*/

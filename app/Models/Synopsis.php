@@ -10,5 +10,5 @@ class Synopsis extends Model
 {
     use HasFactory, HasVersion4Uuids;
 
-    protected $fillable = ["year", "link"];
+    protected $fillable = ["year", "links", "shown"];
 }

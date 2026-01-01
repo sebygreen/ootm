@@ -1,4 +1,5 @@
-import anime from "./anime.es.js";
+import { animate, createTimeline, stagger } from "animejs";
+import { v4 as uuidv4 } from "uuid";
 
 document.addEventListener("DOMContentLoaded", () => {
     //mobile menu
@@ -17,6 +18,8 @@ window.addEventListener("load", () => {
     loader();
     //file upload
     dropzone();
+    //new synopsis links
+    links();
 });
 
 function menu() {
@@ -35,88 +38,86 @@ function menu() {
     };
 
     function open() {
-        const timeline = anime.timeline({
+        const timeline = createTimeline({
             easing: "easeInOutQuint",
         });
         container.classList.add("open");
         nav.classList.add("shown");
-        timeline.add({
-            targets: [svg.top, svg.bottom],
+        timeline.add([svg.top, svg.bottom], {
             translateY: 0,
             duration: 200,
         });
         timeline.add(
+            svg.top,
             {
-                targets: svg.top,
                 rotate: 45,
                 duration: 200,
             },
             200,
         );
         timeline.add(
+            svg.bottom,
             {
-                targets: svg.bottom,
                 rotate: -45,
                 duration: 200,
             },
             200,
         );
         timeline.add(
+            nav,
             {
-                targets: nav,
                 opacity: 1,
                 duration: 400,
             },
             0,
         );
         timeline.add(
+            links,
             {
-                targets: links,
                 opacity: 1,
                 translateY: 0,
                 duration: 400,
-                delay: anime.stagger(50),
+                delay: stagger(50),
             },
             0,
         );
     }
 
     function close() {
-        const timeline = anime.timeline({
+        const timeline = createTimeline({
             easing: "easeOutQuint",
         });
-        timeline.add({
-            targets: [svg.top, svg.bottom],
+        timeline.add([svg.top, svg.bottom], {
             rotate: 0,
             duration: 200,
         });
         timeline.add(
+            svg.top,
             {
-                targets: svg.top,
                 translateY: -4,
                 duration: 200,
             },
             200,
         );
         timeline.add(
+            svg.bottom,
             {
-                targets: svg.bottom,
                 translateY: 4,
                 duration: 200,
             },
             200,
         );
         timeline.add(
+            nav,
             {
-                targets: nav,
                 opacity: 0,
                 duration: 400,
             },
             0,
         );
         timeline.add(
+            links,
             {
-                targets: links,
                 opacity: 0,
                 translateY: -5,
                 duration: 100,
@@ -160,8 +161,7 @@ function top() {
     }
 
     top.addEventListener("click", () => {
-        anime({
-            targets: [document.documentElement, document.body],
+        animate([document.documentElement, document.body], {
             scrollTop: 0,
             duration: 1000,
             easing: "easeInOutQuint",
@@ -170,13 +170,13 @@ function top() {
 }
 
 function gallery() {
-    let duration = 4000;
-    let interval = null;
-    let moving = false;
     const container = document.querySelector(".gallery");
     if (!container) {
         return;
     }
+    let duration = 4000;
+    let interval = null;
+    let moving = false;
     const overflow = container.querySelector(".overflow");
     const controls = {
         next: container.querySelector(".button.next"),
@@ -201,8 +201,7 @@ function gallery() {
         const current = overflow.querySelector(".active");
         const target = current.nextElementSibling;
         const offset = current.clientWidth + 15;
-        anime({
-            targets: overflow,
+        animate(overflow, {
             translateX: -offset,
             duration: 500,
             easing: "easeInOutQuint",
@@ -223,8 +222,7 @@ function gallery() {
         const offset = target.clientWidth + 15;
         overflow.insertBefore(target, overflow.firstChild);
         overflow.style.transform = `translateX(${-offset}px)`;
-        anime({
-            targets: overflow,
+        animate(overflow, {
             translateX: 0,
             duration: 500,
             easing: "easeInOutQuint",
@@ -255,8 +253,7 @@ function gallery() {
 function loader() {
     const loader = document.querySelector("#spinner");
     loader &&
-        anime({
-            targets: loader,
+        animate(loader, {
             opacity: 0,
             scale: 0,
             duration: 200,
@@ -389,5 +386,93 @@ function dropzone() {
     dropzone.addEventListener("click", () => {
         input.click();
         dropzone.blur();
+    });
+}
+
+function links() {
+    const root = document.getElementById("links");
+    if (!root) return;
+
+    const elements = {
+        link: root.querySelector("#link"),
+        type: root.querySelector("#type"),
+        new: root.querySelector(".new"),
+        list: root.querySelector(".list"),
+        input: root.querySelector("input#urls"),
+    };
+    let links = [];
+
+    if (!links.length && JSON.parse(elements.input.value).length) {
+        const extracted = JSON.parse(elements.input.value);
+        links = extracted.map((i) => new Link(i.link, i.type));
+    }
+
+    function Link(link, type) {
+        this.id = uuidv4();
+        this.link = link;
+        this.type = type;
+    }
+
+    const create = {
+        link: (data) => {
+            let article = document.createElement("article");
+            article.className = "link";
+            article.dataset.id = data.id;
+            let link = document.createElement("p");
+            link.classList.add("link");
+            link.innerHTML = data.link;
+            article.appendChild(link);
+            let type = document.createElement("p");
+            type.classList.add("type");
+            type.innerHTML = data.type;
+            article.appendChild(type);
+            let actions = document.createElement("div");
+            actions.className = "actions";
+            actions.appendChild(create.action("delete", "x", handle.delete));
+            article.appendChild(actions);
+            return article;
+        },
+        action: (name, icon, action) => {
+            let button = document.createElement("button");
+            button.className = `button icon ${name}`;
+            button.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"></path>
+                </svg>
+            `;
+            button.addEventListener("click", (event) => action(event));
+            return button;
+        },
+    };
+
+    const handle = {
+        new: (e) => {
+            e.preventDefault();
+            let link = elements.link.value;
+            let type = elements.type.value;
+            if (link === "") return;
+            if (type !== "document" && type !== "video") return;
+            let article = new Link(link, type);
+            links.push(article);
+            elements.link.value = "";
+            elements.type.value = "document";
+            elements.list.appendChild(create.link(article));
+            elements.input.value = JSON.stringify(links.map((l) => ({ link: l.link, type: l.type })));
+        },
+        delete: (e) => {
+            e.preventDefault();
+            let article = e.target.closest("article");
+            let index = links.findIndex((i) => i.id === article.dataset.id);
+            links.splice(index, 1);
+            article.remove();
+            elements.input.value = JSON.stringify(links);
+        },
+    };
+
+    elements.new.addEventListener("click", handle.new);
+    elements.link.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            elements.new.click();
+        }
     });
 }

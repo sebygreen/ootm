@@ -11,13 +11,19 @@ class SynopsisController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            "year" => ["required", "date"],
-            "link" => ["required", "url"],
+            "year" => ["integer", "required"],
+            "urls" => ["json", "required"],
+            "shown" => ["string"],
+            "link" => "exclude",
+            "type" => "exclude",
         ]);
+
+        print_r($request->all());
 
         Synopsis::create([
             "year" => $request->year,
-            "link" => $request->link,
+            "links" => $request->urls,
+            "shown" => $request->shown,
         ]);
 
         return redirect("/office/synopses");

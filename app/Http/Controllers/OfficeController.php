@@ -7,6 +7,7 @@ use App\Models\Photo;
 use App\Models\Synopsis;
 use App\Models\Testimonial;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -18,11 +19,13 @@ class OfficeController extends Controller
         return view("auth.login");
     }
 
-    public function forgotPassword() {
+    public function forgotPassword()
+    {
         return view("auth.password.forgot");
     }
 
-    public function resetPassword(Request $request) {
+    public function resetPassword(Request $request)
+    {
         $token = $request->query("token");
         return view("auth.password.reset", ["token" => $token]);
     }
@@ -60,14 +63,22 @@ class OfficeController extends Controller
 
     public function newSynopsis()
     {
-        return view("office.synopses.new");
+        $range = [];
+        for ($x = Carbon::now()->year - 5; $x <= Carbon::now()->year + 5; $x++) {
+            $range[] = $x;
+        }
+        return view("office.synopses.new", ["range" => $range]);
     }
 
     public function editSynopsis(Request $request)
     {
+        $range = [];
+        for ($x = Carbon::now()->year - 5; $x <= Carbon::now()->year + 5; $x++) {
+            $range[] = $x;
+        }
         $id = $request->query("id");
         $synopsis = Synopsis::find($id);
-        return view("office.synopses.edit", ["synopsis" => $synopsis]);
+        return view("office.synopses.edit", ["synopsis" => $synopsis, "range" => $range]);
     }
 
     //photos
@@ -75,7 +86,7 @@ class OfficeController extends Controller
     {
         $photos = [];
         foreach (Photo::select("id", "path", "created_at")->get() as $photo) {
-            $photos[] = (object) [
+            $photos[] = (object)[
                 "id" => $photo->id,
                 "url" => Storage::url($photo->path),
                 "size" => round(Storage::disk("public")->size($photo->path) / 1024),

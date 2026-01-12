@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Synopsis;
+use App\Rules\LinksRule;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use function PHPUnit\Framework\isArray;
 
 class SynopsisController extends Controller
 {
     public function create(Request $request)
     {
         $validated = $request->validate([
-            "year" => ["integer", "required"],
-            "urls" => ["string", "json", "required"],
+            "year" => ["integer", "unique:synopses", "required"],
+            "urls" => ["string", "json", new LinksRule, "required"],
             "shown" => "boolean",
             "link" => "exclude",
             "type" => "exclude",

@@ -70,6 +70,44 @@ body.form .wrapper {
     padding: var(--spacing-m);
 }
 
+/*errors*/
+.errors {
+    margin-top: var(--spacing-s);
+    background-color: rgb(247, 207, 84);
+    color: rgb(var(--palette-fg));
+    border-radius: 10px;
+    padding: var(--spacing-s);
+}
+
+.errors .heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--spacing-t);
+}
+
+.errors .heading p {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.errors .heading svg {
+    display: block;
+    height: 22px;
+    width: 22px;
+}
+
+.errors ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-t);
+    list-style: inside;
+}
+
+.errors ul li {
+    font-size: 0.9rem;
+}
+
 /*headings*/
 h1 {
     font-weight: 600;
@@ -526,45 +564,6 @@ form div.submit {
     display: flex;
     gap: var(--spacing-s);
     justify-content: space-between;
-}
-
-/*errors*/
-.errors {
-    margin-top: var(--spacing-s);
-    background-color: rgb(247, 207, 84);
-    color: rgb(var(--palette-fg));
-    border-radius: 10px;
-    padding: var(--spacing-s);
-}
-
-.errors .heading {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-s);
-    justify-content: space-between;
-    margin-bottom: var(--spacing-t);
-}
-
-.errors .heading p {
-    font-size: 1.1rem;
-    font-weight: bold;
-}
-
-.errors .heading svg {
-    display: block;
-    height: 22px;
-    width: 22px;
-}
-
-.errors ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-t);
-}
-
-.errors ul li {
-    font-size: 0.9rem;
 }
 
 /*headers*/

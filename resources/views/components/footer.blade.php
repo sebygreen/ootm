@@ -1,6 +1,6 @@
 <footer>
     <div class="wrapper">
-        <div class="copyright">
+        <div class="columns">
             <button class="button icon top">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -12,11 +12,7 @@
                     ></path>
                 </svg>
             </button>
-            <p>
-                &copy; 2026<br />Odyssey of the Mind Switzerland
-            </p>
-        </div>
-        <div class="contact">
+            <div class="contact">
             <h2>Reach Us</h2>
             <div class="method">
                 <p>marcia.banks@ootm.ch</p>
@@ -36,5 +32,9 @@
                 </a>
             </div>
         </div>
+        </div>
+        <p class="copyright">
+            &copy; 2026 Odyssey of the Mind Switzerland, ver 1.1.0
+        </p>
     </div>
 </footer>

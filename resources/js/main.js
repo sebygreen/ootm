@@ -68,7 +68,7 @@ function menu() {
             nav,
             {
                 opacity: 1,
-                duration: 300,
+                duration: 200,
                 ease: "linear",
             },
             0,
@@ -78,11 +78,11 @@ function menu() {
             {
                 opacity: 1,
                 translateY: 0,
-                duration: 300,
+                duration: 200,
                 delay: stagger(50),
-                ease: spring({ bounce: .6 }),
+                ease: spring({ bounce: 0.5 }),
             },
-            200,
+            100,
         );
     }
 
@@ -91,14 +91,14 @@ function menu() {
         timeline.add([svg.top, svg.bottom], {
             rotate: 0,
             duration: 100,
-            ease: "inQuint"
+            ease: "inQuint",
         });
         timeline.add(
             svg.top,
             {
                 translateY: -4,
                 duration: 100,
-                ease: "outQuint"
+                ease: "outQuint",
             },
             100,
         );
@@ -107,7 +107,7 @@ function menu() {
             {
                 translateY: 4,
                 duration: 100,
-                ease: "outQuint"
+                ease: "outQuint",
             },
             100,
         );
@@ -116,7 +116,7 @@ function menu() {
             {
                 opacity: 0,
                 duration: 200,
-                ease: "linear"
+                ease: "linear",
             },
             0,
         );
@@ -133,7 +133,7 @@ function menu() {
                 },
             },
             0,
-        )
+        );
     }
 
     function toggle() {
@@ -170,8 +170,8 @@ function top() {
     top.addEventListener("click", () => {
         animate([document.documentElement, document.body], {
             scrollTop: 0,
-            duration: 1000,
-            ease: "inOutQuint",
+            duration: 800,
+            ease: "outQuint",
         });
     });
 }
@@ -212,7 +212,7 @@ function gallery() {
             translateX: -offset,
             duration: 500,
             ease: "inOutQuint",
-            complete: () => {
+            onComplete: () => {
                 current.classList.remove("active");
                 overflow.appendChild(current);
                 overflow.style.transform = "translateX(0)";
@@ -233,7 +233,7 @@ function gallery() {
             translateX: 0,
             duration: 500,
             ease: "inOutQuint",
-            complete: () => {
+            onComplete: () => {
                 current.classList.remove("active");
                 target.classList.add("active");
                 moving = false;
@@ -265,7 +265,7 @@ function loader() {
             scale: 0,
             duration: 200,
             ease: "linear",
-            complete: () => (loader.style.display = "none"),
+            onComplete: () => (loader.style.display = "none"),
         });
 }
 

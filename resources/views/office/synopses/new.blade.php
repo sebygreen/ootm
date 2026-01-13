@@ -67,7 +67,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="list"></div>
+                        <div class="links"></div>
                     </div>
                     <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256">
                         <path

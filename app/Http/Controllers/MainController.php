@@ -39,7 +39,7 @@ class MainController extends Controller
 
     public function synopses()
     {
-        $synopses = Synopsis::select("year", "link")->orderByDesc("year")->get();
+        $synopses = Synopsis::where("shown", 1)->select("year", "links")->orderByDesc("year")->get();
         return view("main.synopses", [
             "synopses" => $synopses,
         ]);

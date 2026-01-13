@@ -1,7 +1,9 @@
 <article class="photo">
-    <figure>
-        <img src="{{$photo->url}}" alt="Gallery image.">
-    </figure>
+    <div class="content">
+        <figure>
+            <img src="{{$photo->url}}" alt="Gallery image.">
+        </figure>
+    </div>
     <div class="tools">
         <ul class="timestamps">
             <li>

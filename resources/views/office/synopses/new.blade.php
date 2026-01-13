@@ -30,7 +30,7 @@
                         <div class="form">
                             <div class="group required">
                                 <label for="link">URL</label>
-                                <input type="url" id="link" name="link" />
+                                <input type="url" id="link" name="link"/>
                                 <svg class="asterisk" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                      viewBox="0 0 256 256">
                                     <path
@@ -77,7 +77,7 @@
                 <div class="checkbox">
                     <label for="shown">Shown</label>
                     <label class="switch" for="shown">
-                        <input type="checkbox" id="shown" name="shown" value="1" />
+                        <input type="checkbox" id="shown" name="shown" value="1"/>
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -108,7 +108,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                              viewBox="0 0 256 256">
                             <path
-                                d="M235.33,116.72,139.28,20.66a16,16,0,0,0-22.56,0l-96,96.06a16,16,0,0,0,0,22.56l96.05,96.06h0a16,16,0,0,0,22.56,0l96.05-96.06a16,16,0,0,0,0-22.56ZM120,80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm8,104a12,12,0,1,1,12-12A12,12,0,0,1,128,184Z"></path>
+                                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm72,0a12,12,0,1,1,12,12A12,12,0,0,1,152,108Zm32,60a8,8,0,0,1-8,8c-10,0-15.06-6.74-18.4-11.2-3-4-3.92-4.8-5.6-4.8s-2.57.76-5.6,4.8C143.06,169.26,138,176,128,176s-15.06-6.74-18.4-11.2c-3-4-3.92-4.8-5.6-4.8s-2.57.76-5.6,4.8C95.06,169.26,90,176,80,176a8,8,0,0,1,0-16c1.68,0,2.57-.76,5.6-4.8C88.94,150.74,94,144,104,144s15.06,6.74,18.4,11.2c3,4,3.92,4.8,5.6,4.8s2.57-.76,5.6-4.8c3.34-4.46,8.4-11.2,18.4-11.2s15.06,6.74,18.4,11.2c3,4,3.92,4.8,5.6,4.8A8,8,0,0,1,184,168Z"></path>
                         </svg>
                         <p>Error</p>
                     </div>
@@ -121,6 +121,6 @@
             @endif
         </div>
     </main>
-    <x-spinner />
+    <x-spinner/>
     </body>
 </x-layout.root>

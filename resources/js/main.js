@@ -1,4 +1,4 @@
-import { animate, createTimeline, stagger } from "animejs";
+import { animate, createTimeline, spring, stagger } from "animejs";
 import { v4 as uuidv4 } from "uuid";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -38,36 +38,38 @@ function menu() {
     };
 
     function open() {
-        const timeline = createTimeline({
-            easing: "easeInOutQuint",
-        });
+        const timeline = createTimeline();
         container.classList.add("open");
         nav.classList.add("shown");
         timeline.add([svg.top, svg.bottom], {
             translateY: 0,
-            duration: 200,
+            duration: 100,
+            ease: "inQuint",
         });
         timeline.add(
             svg.top,
             {
                 rotate: 45,
-                duration: 200,
+                duration: 100,
+                ease: "outQuint",
             },
-            200,
+            100,
         );
         timeline.add(
             svg.bottom,
             {
                 rotate: -45,
-                duration: 200,
+                duration: 100,
+                ease: "outQuint",
             },
-            200,
+            100,
         );
         timeline.add(
             nav,
             {
                 opacity: 1,
-                duration: 400,
+                duration: 300,
+                ease: "linear",
             },
             0,
         );
@@ -76,42 +78,45 @@ function menu() {
             {
                 opacity: 1,
                 translateY: 0,
-                duration: 400,
+                duration: 300,
                 delay: stagger(50),
+                ease: spring({ bounce: .6 }),
             },
-            0,
+            200,
         );
     }
 
     function close() {
-        const timeline = createTimeline({
-            easing: "easeOutQuint",
-        });
+        const timeline = createTimeline();
         timeline.add([svg.top, svg.bottom], {
             rotate: 0,
-            duration: 200,
+            duration: 100,
+            ease: "inQuint"
         });
         timeline.add(
             svg.top,
             {
                 translateY: -4,
-                duration: 200,
+                duration: 100,
+                ease: "outQuint"
             },
-            200,
+            100,
         );
         timeline.add(
             svg.bottom,
             {
                 translateY: 4,
-                duration: 200,
+                duration: 100,
+                ease: "outQuint"
             },
-            200,
+            100,
         );
         timeline.add(
             nav,
             {
                 opacity: 0,
-                duration: 400,
+                duration: 200,
+                ease: "linear"
             },
             0,
         );
@@ -120,14 +125,15 @@ function menu() {
             {
                 opacity: 0,
                 translateY: -5,
-                duration: 100,
-                complete: () => {
+                duration: 200,
+                ease: "outQuint",
+                onComplete: () => {
                     container.classList.remove("open");
                     nav.classList.remove("shown");
                 },
             },
             0,
-        );
+        )
     }
 
     function toggle() {
@@ -165,7 +171,7 @@ function top() {
         animate([document.documentElement, document.body], {
             scrollTop: 0,
             duration: 1000,
-            easing: "easeInOutQuint",
+            ease: "inOutQuint",
         });
     });
 }
@@ -205,7 +211,7 @@ function gallery() {
         animate(overflow, {
             translateX: -offset,
             duration: 500,
-            easing: "easeInOutQuint",
+            ease: "inOutQuint",
             complete: () => {
                 current.classList.remove("active");
                 overflow.appendChild(current);
@@ -226,7 +232,7 @@ function gallery() {
         animate(overflow, {
             translateX: 0,
             duration: 500,
-            easing: "easeInOutQuint",
+            ease: "inOutQuint",
             complete: () => {
                 current.classList.remove("active");
                 target.classList.add("active");
@@ -254,13 +260,13 @@ function gallery() {
 function loader() {
     const loader = document.querySelector("#spinner");
     loader &&
-    animate(loader, {
-        opacity: 0,
-        scale: 0,
-        duration: 200,
-        easing: "linear",
-        complete: () => (loader.style.display = "none"),
-    });
+        animate(loader, {
+            opacity: 0,
+            scale: 0,
+            duration: 200,
+            ease: "linear",
+            complete: () => (loader.style.display = "none"),
+        });
 }
 
 function dropzone() {
@@ -312,7 +318,7 @@ function dropzone() {
                 size.innerText = formatBytes(item.size, 0);
 
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     image.setAttribute("src", e.target.result);
                 };
                 reader.readAsDataURL(item);
@@ -347,7 +353,7 @@ function dropzone() {
             // send to background
             const reader = new FileReader();
             // change background once file is loaded
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 // remove placeholder svg
                 if (placeholder) {
                     placeholder.remove();
@@ -398,7 +404,7 @@ function links() {
         link: root.querySelector("#link"),
         type: root.querySelector("#type"),
         new: root.querySelector(".new"),
-        list: root.querySelector(".list"),
+        list: root.querySelector(".links"),
         input: root.querySelector("input#urls"),
     };
 
@@ -414,7 +420,7 @@ function links() {
             article.className = "link";
             article.dataset.id = data.id;
             let link = document.createElement("p");
-            link.classList.add("link");
+            link.classList.add("url");
             link.innerHTML = data.link;
             article.appendChild(link);
             let type = document.createElement("p");

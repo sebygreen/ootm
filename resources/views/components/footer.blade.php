@@ -34,7 +34,7 @@
         </div>
         </div>
         <p class="copyright">
-            &copy; 2026 Odyssey of the Mind Switzerland, ver 1.1.0
+            &copy; 2026 Odyssey of the Mind Switzerland, ver. 1.1.0
         </p>
     </div>
 </footer>
